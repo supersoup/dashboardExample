@@ -1,0 +1,14 @@
+{
+  "name": "dashboard_example",
+  "version": "1.0.0",
+  "description": "There are several frontend framework example, such as Avalon, Angular, React,  using the same backend, node with express. That are prodcut Managing dashboards.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "supersoup",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
