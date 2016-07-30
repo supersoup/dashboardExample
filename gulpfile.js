@@ -16,7 +16,10 @@ gulp.task('template-dev', function () {
         .pipe(gulp.dest('avlPublic/dest/template'));
 
     gulp.src('avlPublic/src/template/**/*.html')
-        .pipe(gulp.dest('avlPublic/dest/template'))
+        .pipe(gulp.dest('avlPublic/dest/template'));
+
+    gulp.src('avlPublic/src/index.jade')
+        .pipe(gulp.dest('avlPublic/dest'));
 });
 
 //开发环境样式:编译sass, 自动添加前缀,存放在dest目录下

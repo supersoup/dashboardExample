@@ -1,13 +1,19 @@
 
 var express = require('express');
+var jade = require('jade');
+
 
 var app = express();
 
 //端口
 app.set('port', 3000);
 
+app.get('/', function (req, res) {
+    res.render('index.jade');
+});
+
 //静态文件服务
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/avlPublic/dest'));
 
 //404
 app.use(function (req, res) {
