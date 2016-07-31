@@ -1,6 +1,6 @@
 # dashboardExample
 
-## 要达到的目标
+## 项目目标
 
 ### 整体架构
 
@@ -23,7 +23,7 @@
     * 验证
     * 修改内容对比
 
-## avalon立项
+## 技术选型
 
 ### 前端框架和库
 
@@ -43,7 +43,7 @@
 * `gulp-sass` + `gulp-autoprefixer`: 编译sass, 压缩css, 自动添加前缀
 * `gulp-requirejs`: 压缩, 混淆, 打包javascript
 
-## avalon进行日志
+## 开发日志
 
 ### 2016/7/29
 

@@ -43,7 +43,7 @@ gulp.task('script-pro', function () {
     rjs({
         baseUrl: 'avlPublic/src/script/', //找到main.js文件的目录
         paths: {
-            //avalon: "./avalon.shim",
+            avalon: "./avalon.oniui/avalon.shim",
             text: "./avalon.oniui/combo/text", //由于分居两个目录，因此路径都需要处理一下
             css: "./avalon.oniui/combo/css",
             "css-builder": "./avalon.oniui/combo/css-builder",
