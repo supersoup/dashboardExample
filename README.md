@@ -93,3 +93,75 @@
 当然问题也有:
 
 * 不能使用地址等自动补全的功能. 不过这个功能在dashboard类型的网页中当中使用貌似用处不大, 因为主要都是在`sass`和`js`...
+
+然后使用的时候要注意的是, `jade`包是不用再`app.js`里面`require`的, 但是需要在node_modules里面安装, 否则无法使用
+
+### 2015/8/2
+
+#### 建立styleExample
+
+全网建立统一的styleExample, 这样定义了基础的css组件使用的规则和样式, 便于团队的小伙伴, 以及自己进行维护
+
+### 2015/8/5
+
+着手做了一个list的示例模块, 这个模块包括**验证**, **获取表单数据**功能.
+
+#### 模块的设计
+
+之前的项目中, 习惯把很多有关的和无关的东西也存在vm上面, 让一个vm来引用模块的数据, 这样多少显得有些不合理.
+
+所以现在, 将vm作为一个模块的属性, 把这个模块在公用的方法中作为参数来传递, 很多数据可以挂在模块上, 不用担心生成的vm过大了.
+
+定义了一个`function/list.js`文件作为公用列表方法, 所有列表模块引用他的方法, 而做到: 只需要在模块的js和jade文件上进行声明性的工作, 就可以完成一个模块了.
+
+#### list_example的验证功能
+
+比如某一页面有如下条件将挂在vm上:
+
+```javascript
+condition: {
+    c1: '123',
+    c2: [1,2,3],
+    c3: true,
+    c4: 6,
+    c5: '2016-08-05'
+}
+```
+
+我们只需要将该条件中的需要验证的条件作如下声明:
+
+```javascript
+validation: {
+    c1: {
+        name:'c1',
+        required: true
+    },
+    c2: {
+        name: 'c2',
+        minSize: 2
+    },
+    c4: {
+        name: 'c4',
+        required: true,
+        minValue: 5
+    }
+}
+```
+
+然后在具体的方法中进行调用`function/list.js`中封装的方法`validateCondition`就可以执行验证, 并在验证成功和失败后做相应的处理了:
+
+```javascript
+getResult = function () {
+    List.validateCondition(pl, 'validation',
+        //成功执行:
+        function () {
+            var content = List.createReqContent(pl);
+            console.log('success!');
+            console.log(content);
+        },
+        //失败执行
+        function (failObj) {
+            console.log(failObj);
+        })
+};
+```

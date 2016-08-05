@@ -15,11 +15,17 @@ require.config({
     }
 });
 
-require(['avalon', 'core/a1', 'domReady!'], function (avalon) {
+
+require([
+    'avalon',
+    'main/product_list',
+    'core/root',
+    'core/a1',
+    'domReady!'], function (avalon) {
     var vmBase = avalon.define({
         $id: 'vmBase'
     });
 
-    avalon.log('hello, my dashboard!')
+    avalon.log('hello, my dashboard!');
     avalon.scan();
 });

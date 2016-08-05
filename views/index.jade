@@ -1,18 +1,18 @@
 //
    Created by supersoup on 16/7/31.
 doctype
-html
+html(ms-controller="vmRoot")
     head
         title 使用avalon.oniui搭建dashboard示例
         link(href="stylesheet/stylesheet.css")
 
     body(ms-controller="vmBase")
-        .header(ms-include-src=" 'template/part/header.html' ")
-        .boder
+        .container
+            .header(ms-include-src=" 'template/part/header.html' ")
             .menu(ms-include-src=" 'template/part/menu.html' ")
             .content
                 .tab
-                .main
+                .main(ms-include-src=" 'template/main/list_example.html' ")
         .dialog(ms-include-src=" 'template/part/dialog.html' ")
 
         //script

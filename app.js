@@ -15,6 +15,10 @@ app.get('/', function (req, res) {
     res.render('index.jade');
 });
 
+app.get('/style', function (req, res) {
+    res.render('styleExample.jade');
+});
+
 app.get('/category/list', category.getList);
 
 //静态文件服务

@@ -17,9 +17,6 @@ gulp.task('template-dev', function () {
 
     gulp.src('avlPublic/src/template/**/*.html')
         .pipe(gulp.dest('avlPublic/dest/template'));
-
-    gulp.src('avlPublic/src/index.jade')
-        .pipe(gulp.dest('avlPublic/dest'));
 });
 
 //开发环境样式:编译sass, 自动添加前缀,存放在dest目录下
@@ -62,7 +59,7 @@ gulp.task('script-pro', function () {
 gulp.task('development', ['template-dev', 'stylesheet-dev', 'script-dev'], function () {
     gulp.watch('avlPublic/src/template/**', ['template-dev']);
     gulp.watch('avlPublic/src/stylesheet/**', ['stylesheet-dev']);
-    gulp.watch('avlPublicsrc/src/script/**', ['script-dev']);
+    gulp.watch('avlPublic/src/script/**', ['script-dev']);
 });
 
 //生产环境任务集成: 一键清空dest, 并生成用于发布的代码
