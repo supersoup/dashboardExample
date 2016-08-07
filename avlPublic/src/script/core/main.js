@@ -20,6 +20,10 @@ require([
     'avalon',
     'main/product_list',
     'core/root',
+    'avalon.oniui/dropdown/avalon.dropdown',
+    'avalon.oniui/checkboxlist/avalon.checkboxlist',
+    'avalon.oniui/datepicker/avalon.datepicker',
+    'avalon.oniui/spinner/avalon.spinner',
     'core/a1',
     'domReady!'], function (avalon) {
     var vmBase = avalon.define({

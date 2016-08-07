@@ -11,7 +11,7 @@ define(['jquery', 'avalon'], function ($, avalon) {
     * */
     var validFuncMap = {
         //必填
-        required: function (val, demand) {
+        required: function (val) {
             return {
                 flag: val !== '',
                 message: '不能为空'
@@ -19,7 +19,7 @@ define(['jquery', 'avalon'], function ($, avalon) {
         },
 
         //合格的电话号码
-        phone: function (val, demand) {
+        phone: function (val) {
             var rxp = /1[\d]{10}/;
             return {
                 flag: rxp.test(val),
@@ -28,8 +28,8 @@ define(['jquery', 'avalon'], function ($, avalon) {
         },
 
         //日期格式
-        date: function (val, demand) {
-            var rxp = /[\d]{4}-[\d]{2}-[\d]{2}]/;
+        date: function (val) {
+            var rxp = /[\d]{4}-[\d]{2}-[\d]{2}/;
             return {
                 flag: rxp.test(val),
                 message: '格式需要为"XXXX-XX-XX"的形式'
@@ -71,12 +71,11 @@ define(['jquery', 'avalon'], function ($, avalon) {
 
     /*
     * 验证某个属性是否它的一系列要求
-    * @param1: str验证对象的其中一个属性的键名
     * @param2: obj验证对象的其中一个属性的值
     * @param3: str/number/arr该属性的值
     * @return: obj该属性的验证结果 obj.flag验证是否合格 obj.message不合格的提示
     * */
-    function validateConditionItem(key, validItem, val) {
+    function validateConditionItem(validItem, val) {
 
         //验证情况对象, 将记录该属性是否验证成功back.flag以及失败提示back.message
         var back;
@@ -85,8 +84,8 @@ define(['jquery', 'avalon'], function ($, avalon) {
             if (key !== 'name') {
 
                 //validFuncMap上的属性 和 validate上的属性要对应.
-                if (!validFuncMap[key]) {
-                    avalon.log('supersoup: 注意, 没有定义该项验证方法!');
+                if (!(key in validFuncMap)) {
+                    throw new Error('supersoup: 注意, 没有定义该项验证方法!');
                 } else {
                     back = validFuncMap[key](val, validItem[key]);
                 }
@@ -112,9 +111,9 @@ define(['jquery', 'avalon'], function ($, avalon) {
         var vm = main.vm;
         var condition = vm.condition;
         var back;
-        var validObj = vm[validObjName];
+        var validObj = main[validObjName];
         for (var key in validObj) {
-            back = validateConditionItem(key, validObj[key], condition[key]);
+            back = validateConditionItem(validObj[key], condition[key]);
 
             //如果该属性的返回值的flag为false, 则执行验证失败回调, 并提前终止验证
             if (!back.flag) {

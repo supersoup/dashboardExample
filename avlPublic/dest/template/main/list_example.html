@@ -3,4 +3,56 @@
 Created by supersoup on 16/8/6.
 
 -->
-<div ms-controller="pl"><a ms-click="getResult">点击</a></div>
+<div ms-controller="pl">
+  <div class="field-box">
+    <div class="field-row">
+      <div class="field-title">c1(输入框)</div>
+      <div class="field-content">
+        <input type="text" ms-duplex="condition.c1"/>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-title">c2(多选框列表)</div>
+      <div class="field-content">
+        <ul ms-widget="checkboxlist" data-checkboxlist-duplex="condition.c2">
+          <li>
+            <input type="checkbox" value="1"/><span class="label">一</span>
+          </li>
+          <li>
+            <input type="checkbox" value="2"/><span class="label">二</span>
+          </li>
+          <li>
+            <input type="checkbox" value="3"/><span class="label">三</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-title">c3(勾选)</div>
+      <div class="field-content">
+        <input type="checkbox" ms-duplex-checked="condition.c3"/>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-title">c4(数字选择器)</div>
+      <div class="field-content">
+        <input ms-widget="spinner" ms-duplex="condition.c4"/>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-title">c5(时间)</div>
+      <div class="field-content">
+        <input ms-widget="datepicker" data-datepicker-change-month-and-year="true" ms-duplex="condition.c5"/>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-title">c6(下拉框)</div>
+      <div class="field-content">
+        <select ms-widget="dropdown" data-dropdown-$source="c6LIst" ms-duplex="condition.c6">
+          <option ms-repeat="c6LIst" ms-attr-value="el.value">{{el.label}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row"><a ms-click="getResult1">点击进行操作1</a><a ms-click="getResult2">点击进行操作2</a></div>
+  </div>
+</div>

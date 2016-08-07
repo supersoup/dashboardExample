@@ -10,35 +10,34 @@ define(['../function/list', '../core/root'], function (List) {
         $id: 'pl',
         $skipArray: ['validation'],
 
-        //条件
+        //改变条件
+        c6LIst: [{
+            value: '',
+            label: '请选择'
+        }, {
+            value: '2016-08-05早晨',
+            label: '2016-08-05早晨'
+        }, {
+            value: '2016-08-05中午',
+            label: '2016-08-05中午'
+        }, {
+            value: '2016-08-05晚上',
+            label: '2016-08-05晚上'
+        }],
+
+        //选择条件
         condition: {
             c1: '123',
-            c2: [1,2,3],
+            c2: [],
             c3: true,
             c4: 6,
-            c5: '2016-08-05'
-        },
-
-        //验证对象1, 某操作
-        validation: {
-            c1: {
-                name:'c1',
-                required: true
-            },
-            c2: {
-                name: 'c2',
-                minSize: 2
-            },
-            c4: {
-                name: 'c4',
-                required: true,
-                minValue: 5
-            }
+            c5: '2016-08-05',
+            c6: ''
         }
     };
 
-    model.getResult = function () {
-        List.validateCondition(pl, 'validation',
+    model.getResult1 = function () {
+        List.validateCondition(pl, 'validation1',
             //成功执行:
             function () {
                 var content = List.createReqContent(pl);
@@ -51,10 +50,83 @@ define(['../function/list', '../core/root'], function (List) {
             })
     };
 
+    model.getResult2 = function () {
+        List.validateCondition(pl, 'validation2',
+            //成功执行:
+            function () {
+                var content = List.createReqContent(pl);
+                console.log('success!');
+                console.log(content);
+            },
+            //失败执行
+            function (failObj) {
+                console.log(failObj);
+            })
+    };
 
     //传入数据模型, 生成视图模型
     pl.vm = avalon.define(model);
     pl.model = model;
+
+    //验证对象1, 某操作
+    pl.validation1 = {
+        c1: {
+            name:'在操作1时c1(输入框)',
+            required: true
+        },
+        c2: {
+            name: '在操作1时c2(多选框列表)',
+            minSize: 2
+        },
+        c4: {
+            name: '在操作1时c4(数字选择器)',
+            required: true,
+            minValue: 5
+        }
+    };
+
+    //验证对象2, 某操作
+    pl.validation2 = {
+        c1: {
+            name:'在操作2时c1(输入框)',
+            required: true,
+            phone: true
+        },
+        c5: {
+            name: '在操作2时c5(时间)',
+            required: true,
+            date: true
+        },
+        c6: {
+            name: '在操作2时c6(下拉框)',
+            required: true
+        }
+    };
+
+    //监控属性
+    pl.vm.condition.$watch('c5', function (o, n) {
+        var newArr = [{
+            value: '',
+            label: '请选择'
+        }];
+        avalon.log(o);
+        avalon.log(n);
+        newArr.push({
+            value: n + '上午',
+            label: n + '上午'
+        });
+        newArr.push({
+            value: n + '中午',
+            label: n + '中午'
+        });
+        newArr.push({
+            value: n + '晚上',
+            label: n + '晚上'
+        });
+
+        pl.vm.c6LIst.clear();
+        pl.vm.c6LIst = newArr;
+    });
 
     //暴露模块
     return pl;
