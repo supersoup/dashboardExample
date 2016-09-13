@@ -5,7 +5,7 @@
  *    <p>文件上传组件。支持预览、大文件和分块上传。</p>
  *  @updatetime 2015-4-10
  */
-define(["avalon", "text!./avalon.fileuploader.html", "browser/avalon.browser", "./eventmixin",
+define(["avalon", "text!./avalon.fileuploader.html", "../browser/avalon.browser", "./eventmixin",
     "./blob",
     "./file",
     "./flasheventhub",
@@ -13,7 +13,7 @@ define(["avalon", "text!./avalon.fileuploader.html", "browser/avalon.browser", "
     "./blobqueue",
     "./spark-md5",
     "./inputproxy",
-    "mmRequest/mmRequest",
+    "../mmRequest/mmRequest",
     "css!../chameleon/oniui-common.css",
     "css!./avalon.fileuploader.css"],
     function (avalon, template, browser, eventMixin, blobConstructor, fileConstructor, fehConstructor, runtimeConstructor, blobqueueConstructor, md5gen, inputProxyContructor) {

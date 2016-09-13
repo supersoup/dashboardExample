@@ -33,6 +33,49 @@ define(['../function/list', '../core/root'], function (List) {
             c4: 6,
             c5: '2016-08-05',
             c6: ''
+        },
+
+        $uploader: {
+            maxFileSize: 20485760,
+            filePoolSize: 204857600,
+            addButtonText: "添加文件",
+            uploadButtonText: "上传文件",
+            previewWidth: 360,
+            previewHeight: 50,
+            acceptFileTypes: "*",
+            showProgress: true,
+            enableDragDrop: true,
+            serverConfig: {
+                url: "/fileuploader"
+            },
+            onFileOverSize: function (fileObj) {
+                alert(fileObj.name+"超出了文件尺寸限制")
+            },
+            onFilePoolOverSize: function (fileObj, poolSize) {
+                alert("文件缓存池达已满，不能继续添加文件。")
+            },
+            onSameFileAdded: function () {
+                alert("不能添加相同的文件");
+            },
+            onFileRequestResponsed: function(fileObj, status, res) {
+                var newDetail;
+                var data;
+                if (status == 'OK') {
+                    data = JSON.parse(res);
+                    newDetail = {
+                        id: data.content.id,
+                        biaoti: data.content.file_name,
+                        reports_type: '0',
+                        reports_pro_type: '0',
+                        key_words: '',
+                        reports_date: '',
+                        receive_user_id: '',
+                        bank_name: ''
+                    };
+
+                    console.log(newDetail);
+                }
+            }
         }
     };
 

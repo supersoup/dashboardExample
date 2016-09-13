@@ -45,7 +45,9 @@ gulp.task('script-pro', function () {
             css: "./avalon.oniui/combo/css",
             "css-builder": "./avalon.oniui/combo/css-builder",
             "normalize": "./avalon.oniui/combo/normalize",
-            domReady: "./avalon.oniui/combo/domReady"
+            domReady: "./avalon.oniui/combo/domReady",
+
+            jquery: "other_lib/jquery"
         },
 
         //optimize: "none",//如果要调试就不压缩

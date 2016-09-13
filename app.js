@@ -10,6 +10,13 @@ var app = express();
 //端口
 app.set('port', 3000);
 
+
+app.post('/fileuploader', function (req, res) {
+   res.json({
+
+   });
+});
+
 //默认返回首页
 app.get('/', function (req, res) {
     res.render('index.jade');
